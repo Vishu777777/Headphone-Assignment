@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Highlighting</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="textParagraph">
+        JavaScript is a versatile and powerful programming language that is commonly used for creating dynamic and interactive effects within web browsers.
+    </p>
+
+    <script>
+        // Function to highlight words longer than 8 characters
+        function highlightLongWords() {
+            const paragraph = document.getElementById('textParagraph');
+            const words = paragraph.innerHTML.split(' ');
+
+            const highlightedWords = words.map(word => {
+                // Remove punctuation for accurate word length check
+                const cleanWord = word.replace(/[.,!?;:()]/g, '');
+
+                if (cleanWord.length > 8) {
+                    return `<span class="highlight">${word}</span>`;
+                } else {
+                    return word;
+                }
+            });
+
+            paragraph.innerHTML = highlightedWords.join(' ');
+        }
+
+        highlightLongWords();
+    </script>
+
+</body>
+</html>

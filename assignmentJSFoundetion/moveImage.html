@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move the Image with Arrow Keys</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        #image {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://via.placeholder.com/100" alt="Movable Image" id="image">
+
+    <script>
+        // Initial position of the image
+        let positionX = 0;
+        let positionY = 0;
+        const moveAmount = 20; // Number of pixels to move on each key press
+
+        // Get the image element
+        const image = document.getElementById('image');
+
+        // Function to move the image
+        function moveImage(event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                    positionY -= moveAmount;
+                    break;
+                case 'ArrowDown':
+                    positionY += moveAmount;
+                    break;
+                case 'ArrowLeft':
+                    positionX -= moveAmount;
+                    break;
+                case 'ArrowRight':
+                    positionX += moveAmount;
+                    break;
+            }
+
+            // Update the position of the image
+            image.style.transform = `translate(${positionX}px, ${positionY}px)`;
+        }
+
+        // Add event listener for keydown event
+        window.addEventListener('keydown', moveImage);
+    </script>
+
+</body>
+</html>
